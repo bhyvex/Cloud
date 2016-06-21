@@ -1,0 +1,55 @@
+<div class="col-md-12">
+    <form class="form-horizontal" role="form" method="POST" action="<?php echo root_url . "/exam/add-exam"; ?>">
+        <div class="form-group">
+            <div class="col-sm-2">
+                <label for="exam_name" class="control-label">Exam Name</label>
+            </div>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="exam_name" name="exam_name"
+                       placeholder="Please enter the exam name">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2">
+                <label for="inputPassword3" class="control-label">Exam Duration(mins)</label>
+            </div>
+            <div class="col-sm-10">
+                <select  class="btn btn-success btn-block form-control" name="exam_duration" id="exam_duration">
+                    <option value="00:27">00:27</option>        
+                    <option value="5:00">5:00</option>        
+                    <option value="15:00">15:00</option>
+                    <option value="30:00">30:00</option>
+                    <option value="45:00">45</option>
+                    <option value="60:00">60</option>
+                    <option value="75:00">75</option>
+                    <option value="90:00">90</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2">
+                <label for="" class="control-label">Exam Duration(mins)</label>
+            </div>
+            <div class="col-sm-10">
+                <select  class="btn btn-success btn-block form-control" name="exam_no" id="exam_no">
+                    <?php
+                    for ($i = 1; $i < 31; $i++) {
+                        echo "<option value=\"$i\">" . $i . "</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label name="error_info" id="error_info" for="" class="control-label  col-md-offset-2" style="color:red">
+            </label>
+
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn-lg  btn btn-default">
+                    Next</button>
+            </div>
+        </div>
+    </form>
+</div>

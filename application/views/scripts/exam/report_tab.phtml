@@ -1,0 +1,191 @@
+<div>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <h1 class="text-center text-primary"><?php echo $this->basic_info['exam_name']; ?>
+
+                </h1>
+                <div class="col-md-6">
+                    <img src="https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?q=75&amp;fm=jpg&amp;s=5e57c661d0f772ce269188a6f5325708"
+                         class="img-responsive">
+                </div>
+                <div class="col-md-6">
+
+                    <h4 style="color:black">
+                        <ul>
+                            <li class="list-group-item list-group-item-warning"  style="color:grey">
+                                <strong>Duration(mins):&nbsp;</strong><?php echo $this->basic_info['duration']; ?></li>
+                            <li class="list-group-item list-group-item-warning"  style="color:grey">
+                                <strong>Total Questions:&nbsp;</strong><?php echo $this->basic_info['total_question']; ?></li>
+                            <li class="list-group-item list-group-item-warning"  style="color:grey">
+                                <strong>Total People answered:&nbsp;</strong><?php echo $this->mark_analysis['count']; ?></li>
+                            <li class="list-group-item list-group-item-warning"  style="color:black">
+                                <div class="">
+                                    <span> What people think for this exam:</span><br/><br/>
+                                     <div class="progress">
+                                      Hard <div class="progress-bar progress-bar-danger" role="progressbar" style="width: 
+                                                   <?php echo $this->mark_analysis['rankWidth']['hard']; ?>%;">
+                                             <?php echo $this->mark_analysis['rankArr']['hard']; ?></div>
+                                    </div>
+                                    <div class="progress">
+                                        Medium<div class="progress-bar progress-bar-info" role="progressbar" style="width: 
+                                                <?php echo $this->mark_analysis['rankWidth']['medium']; ?>%;">
+                                            <?php echo $this->mark_analysis['rankArr']['medium']; ?></div>
+                                    </div>
+                                    <div class="progress">
+                                        Easy<div class="progress-bar progress-bar-warning" role="progressbar" style="width: 
+                                              <?php echo $this->mark_analysis['rankWidth']['easy']; ?>%;">
+                                          <?php echo $this->mark_analysis['rankArr']['easy']; ?></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item list-group-item-warning"  style="color:black">
+<!--                                <form action="<?php echo root_url . '/exam/download-report' ?>" method="POST">
+                                    <input type="hidden" name="exam_name" value="<?php echo $this->basic_info['exam_name']; ?>">
+                                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="download the analyse report">
+                                </form>-->
+                            </li>
+                        </ul></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12"><hr></div>
+    <br/><br/>
+
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-inverse">Mark Analysis</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div id="mark_chart" ></div>
+
+                                    </div>
+                                    <div class="col-md-7">
+                                        <ul class="list-group">
+                                            <li class="list-group-item list-group-item-success"><strong>Marks</strong>
+                                                <?php echo "(total:" . $this->mark_analysis['total'] . ")"; ?></li>
+                                            <li class="list-group-item"><strong>Highest Mark:</strong>
+                                                <?php echo $this->mark_analysis['highestMark']; ?></li>
+                                            <li class="list-group-item"><strong>Lowest Mark:</strong>
+                                                <?php echo $this->mark_analysis['lowestMark']; ?></li>
+                                            <li class="list-group-item"><strong>Average Mark:</strong>
+                                                <?php echo $this->mark_analysis['averageMark']; ?></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-inverse">Duration Analysis</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div id="duration_chart" ></div>
+
+                                    </div>
+                                    <div class="col-md-7">
+                                        <ul class="list-group">
+                                            <li class="list-group-item list-group-item-success"><strong>Duration</strong>
+                                                <?php echo "(total:" . $this->duration_analysis['total'] . ")"; ?></li>  
+                                            <li class="list-group-item"><strong>Highest Duration:</strong>
+                                                <?php echo $this->duration_analysis['highestDuration']; ?></li>
+                                            <li class="list-group-item"><strong>Shortest Duration:</strong>
+                                                <?php echo $this->duration_analysis['lowestDuration']; ?></li>
+                                            <li class="list-group-item"><strong>Average Duration:</strong>
+                                                <?php echo $this->duration_analysis['averageDuration']; ?></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-inverse">Questions Analysis</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Correct</th>
+                                <th>InCorrect</th>
+                                <th>Correct Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($this->questions as $row){?>
+                            <tr>
+                                <td><?php echo $row['exam_question_id']+1;?></td>
+                                <td><?php echo $row['correct_num'];?></td>
+                                <td><?php echo $row['wrong_num'];?></td>
+                                <td><?php echo round($row['correct_num']/($row['wrong_num']+$row['correct_num']))*100;?>%</td>
+                            </tr>
+                            <?php }?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    google.load("visualization", "1", {packages: ["corechart"]});
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+
+//
+        var data_mark = google.visualization.arrayToDataTable([
+            ['Mark', ''],
+            ['hd(>80%)', <?php echo $this->mark_analysis['gradeGroup']['hd']; ?>],
+            ['d(70%-80%)', <?php echo $this->mark_analysis['gradeGroup']['d']; ?>],
+            ['c(60%-70%)', <?php echo $this->mark_analysis['gradeGroup']['c']; ?>],
+            ['p(50%-60%)',<?php echo $this->mark_analysis['gradeGroup']['p']; ?>],
+            ['f(<50%)', <?php echo $this->mark_analysis['gradeGroup']['f']; ?>]
+        ]);
+        var options = {
+            title: 'Marks Table',
+            is3D: true
+        };
+        var chart_mark = new google.visualization.PieChart(document.getElementById('mark_chart'));
+        chart_mark.draw(data_mark, options);
+
+        var data_duration = google.visualization.arrayToDataTable([
+            ['Mark', ''],
+            ['>80% time', <?php echo $this->duration_analysis['duration_group']['hd']; ?>],
+            ['60%-80%', <?php echo $this->duration_analysis['duration_group']['d']; ?>],
+            ['40%-60%', <?php echo $this->duration_analysis['duration_group']['c']; ?>],
+            ['<40%', <?php echo $this->duration_analysis['duration_group']['p']; ?>]
+        ]);
+        var options_duration = {
+            title: 'Duration Table(time used)',
+            is3D: true
+        };
+        var chart_duration = new google.visualization.PieChart(document.getElementById('duration_chart'));
+        chart_duration.draw(data_duration, options_duration);
+
+
+    }
+</script>

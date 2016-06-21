@@ -1,0 +1,116 @@
+<html>
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+        <title>Fullscreen Video Backgrounds - Demo Page</title>
+        <meta name="author" content="Jake Rocheleau">
+        <link rel="shortcut icon" href="http://www.templatemonster.com/favicon.ico">
+        <link rel="icon" href="http://www.templatemonster.com/favicon.ico">
+        <link rel="stylesheet" type="text/css" media="all" href="<?php echo root_url; ?>/data/css/video_styles.css">
+        <link rel="stylesheet" type="text/css"  href="<?php echo root_url; ?>/data/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css"  href="<?php echo root_url; ?>/data/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css"  href="<?php echo root_url; ?>/data/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css"  href="<?php echo root_url; ?>/data/css/bootstrap-theme.css">
+        <link rel="stylesheet" type="text/css"  href="<?php echo root_url; ?>/data/css/bootstrap-theme.css.map">
+        <link rel="stylesheet" type="text/css"  href="<?php echo root_url; ?>/data/css/bootstrap.css.map">
+        <link rel="stylesheet" type="text/css"  href="<?php echo root_url; ?>/data/css/tab.css.map">
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
+        rel="stylesheet" type="text/css">
+
+        <script type="text/javascript" src="<?php echo root_url; ?>/data/js/jquery-1.10.0.min.js"></script>
+        <script type="text/javascript" src="<?php echo root_url; ?>/data/js/jquery-ui-1.8.22.custom.min.js"></script>
+        <script type="text/javascript" src="<?php echo root_url; ?>/data/js/jquery.imagesloaded.js"></script>
+        <script type="text/javascript" src="<?php echo root_url; ?>/data/js/video.js"></script>
+        <script type="text/javascript" src="<?php echo root_url; ?>/data/js/bigvideo.js"></script>
+        <script type="text/javascript" src="<?php echo root_url; ?>/data/js/bootstrap.js"></script>
+        <script type="text/javascript" src="<?php echo root_url; ?>/data/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="<?php echo root_url; ?>/data/js/npm.js"></script>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    </head>
+
+    <body style="background:url('https://s3-ap-southeast-2.amazonaws.com/cloudingrmit/data/media/background.jpg')">
+        <div class="cover">
+            <div class="navbar navbar-default">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"><span>
+                                                    <img width="260" height="40" src="https://s3-ap-southeast-2.amazonaws.com/cloudingrmit/data/media/logo.png">
+                            </span></a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <?php if(isset($this->username)){?>
+                            <li class="active">
+                                <a href="#">Hello ,<?php echo $this->username;?></a>
+                            </li>
+                            <li>
+                                <a href="<?php echo root_url.'/user/logout'?>">Logout</a>
+                            </li>
+                            <?php }?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="cover-image"></div>
+            <div class="section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="breadcrumb">
+                                <li>
+                                    <a href="<?php echo root_url;?>">Home</a>
+                                </li>
+                               
+                                <li class="active"><?php echo $this->page_name;?></li>
+                            </ul>
+                            <div class="page-header">
+                                <h1><?php echo $this->page_name;?></h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <?php echo $this->layout()->content; ?>
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <footer class="container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h5>@copyright:@service2015</h5>
+                    </div>
+                    <div class="col-sm-6">
+                      
+                    
+                        <div class="row">
+                            <div class="col-md-12 hidden-xs text-right">
+                                <a href="#"><i class="fa fa-3x fa-fw fa-instagram text-inverse"></i></a>
+                                <a href="#"><i class="fa fa-3x fa-fw fa-twitter text-inverse"></i></a>
+                                <a href="#"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
+                                <a href="#"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+
+</html>
+

@@ -1,0 +1,149 @@
+<script type="text/javascript">
+    var c = 0;
+    var count = true;
+    var t;
+
+    function timedCount()
+    {
+        //hidden the button and disply stop button
+        document.getElementById('exam_content').hidden = false;
+        document.getElementById('start').hidden = true;
+//		document.getElementById('stop').hidden = false;
+
+        var text = document.getElementById('exam_duration').value;
+        var timer = text.split(":");
+        var min = parseInt(timer[0]);
+        var sec = parseInt(timer[1]);
+
+        if (sec == 0) {
+            if (min > 0) {
+                min--;
+                sec = 59;
+            } else {
+                count = false;
+                document.getElementById("exam_form").submit();
+
+//                alert("Time up!");
+            }
+        } else {
+            sec--;
+        }
+
+
+        if (sec < 10) {
+            sec = "0" + sec
+        }
+        if (min < 10) {
+            min = "0" + min
+        }
+
+        document.getElementById('timer').innerHTML = min + ":" + sec;
+        document.getElementById('exam_duration').value = min + ":" + sec;
+        c++;
+        if (count)
+        {
+            t = setTimeout(function() {
+                timedCount()
+            }, 1000);
+            ;
+        }
+    }
+
+    function stopCount()
+    {
+//		alert("You have used " + c +"s");
+//                document.getElementById('exam_duration').value=min+":"+sec;
+        document.getElementById("exam_form").submit();
+        clearTimeout(t);
+    }
+</script>
+<div >
+    <h3 >
+        <label class="col-md-5 btn-default">Times Remaining(mm:ss):</label>
+        <label class="col-md-3 btn-default" id="timer"><?php echo $this->basic_info['duration']; ?></label>
+        <input type="button" class="btn-success" id="start" value="Start Exam Now!" onClick="timedCount()">
+    </h3>
+</div>
+
+
+<div class="container" id="exam_content" hidden>
+    <hr>
+    <form method="POST" action="<?php echo root_url . '/exam/finish-exam'; ?>" name="exam_form" id="exam_form">
+        <input type="hidden" name="total_question" value="<?php echo $this->basic_info['total_question'] ?>">
+        <input type="hidden" name="exam_name" value="<?php echo $this->basic_info['exam_name'] ?>">
+        <input type="hidden" id="exam_duration" name="exam_duration" value="<?php echo $this->basic_info['duration']; ?>">
+        <input type="hidden" id="possible_duration" name="possible_duration" value="<?php echo $this->basic_info['duration']; ?>">
+
+        <div class="tabbable-panel">
+            <div class="tabbable-line">
+                <ul class="nav nav-tabs">
+
+                    <?php
+                    for ($i = 1; $i < $this->basic_info['total_question'] + 1; $i++) {
+                        echo "<li><a href=\"#page$i\" data-toggle=\"tab\">$i</a></li>";
+                    }
+                    ?>
+                    <li><a href="#rank" data-toggle="tab">Rank It</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane" id="rank">
+                        <div class="col-md-12 row">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <label><input type="radio" name="rank" value="Hard" checked> 
+                                        Difficult</label>
+                                </li>
+                                <li class="list-group-item">
+                                    <label><input type="radio" name="rank" value="Medium"> 
+                                        Medium</label>
+                                </li>    
+                                <li class="list-group-item">
+                                    <label><input type="radio" name="rank" value="Easy"> 
+                                        Easy</label>
+                                </li>
+                                <li class="list-group-item">
+                                    <label><input type="text" name="student_name" placeholder="Please Enter your name" > 
+                                    </label>
+                                </li>
+
+                        </div>
+                    </div>
+                    <?php for ($i = 0; $i < $this->basic_info['total_question']; $i++) { ?>
+                        <div class="tab-pane <?php
+                        if ($i == 0) {
+
+                            echo "active";
+                        }
+                        ?>" id="page<?php echo $i + 1; ?>">
+                            <div class="col-md-12 row">
+                                <ul class="list-group">
+                                    <li class="list-group-item list-group-item-success">
+                                        <h4><?php echo ($i + 1) . "." . $this->questions[$i]['title']; ?>
+                                        </h4></li>
+                                    <li class="list-group-item">
+                                        <label><input type="radio" name="answer_<?php echo $i; ?>" value="A"> 
+                                            A. <?php echo $this->questions[$i]['A']; ?></label> </li>
+                                    <li class="list-group-item">
+                                        <label><input type="radio" name="answer_<?php echo $i; ?>" value="B"> 
+                                            B. <?php echo $this->questions[$i]['B']; ?></label> </li>
+                                    <li class="list-group-item">
+                                        <label><input type="radio" name="answer_<?php echo $i; ?>" value="C"> 
+                                            C. <?php echo $this->questions[$i]['C']; ?></label> </li>
+                                    <li class="list-group-item">
+                                        <label><input type="radio" name="answer_<?php echo $i; ?>" value="D"> 
+                                            D. <?php echo $this->questions[$i]['D']; ?></label> </li>
+                                    <li class="list-group-item">
+                                        <label><input type="radio" name="answer_<?php echo $i; ?>" value="F" checked> 
+                                            F.I have no idea</label> </li>
+
+                                </ul>
+
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+            <input class="btn btn-default btn-block" type="submit" onclick="stopCount()">
+        </div>
+    </form>
+</div>

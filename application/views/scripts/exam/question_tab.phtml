@@ -1,0 +1,56 @@
+   <div class="section">
+                    <div class="container">
+                        <br/>
+                        <div class="tabbable-panel">
+                            <div class="tabbable-line">
+                                <ul class="nav nav-tabs">
+
+                                    <?php
+                                    for ($i = 1; $i < $this->basic_info['total_question'] + 1; $i++) {
+                                        echo "<li><a href=\"#page$i\" data-toggle=\"tab\">$i</a></li>";
+                                    }
+                                    ?>
+                                </ul>
+                                <div class="tab-content">
+                                    <?php for ($i = 0; $i < $this->basic_info['total_question']; $i++) { ?>
+                                        <div class="tab-pane <?php
+                                        if ($i == 0) {
+
+                                            echo "active";
+                                        }
+                                        ?>" id="page<?php echo $i + 1; ?>">
+
+                                            <div class="row">
+
+                                                <div class="col-md-12">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item list-group-item-success">
+                                                            <h4><?php echo ($i + 1) . "." . $this->questions[$i]['title']; ?>
+                                                            </h4></li>
+                                                        <li class="list-group-item"
+                                                            style="background:<?php if($this->questions[$i]['A']==$this->questions[$i]['result']){
+                                                                echo "red";
+                                                            }?>">
+                                                            A. <?php echo $this->questions[$i]['A']; ?></li>
+                                                        <li class="list-group-item">
+                                                            B. <?php echo $this->questions[$i]['B']; ?></li>
+                                                        <li class="list-group-item">
+                                                            C. <?php echo $this->questions[$i]['C']; ?></li>
+                                                        <li class="list-group-item">
+                                                            D. <?php echo $this->questions[$i]['D']; ?></li>
+                                                        <li class="list-group-item">
+    <!--                                                            <i class="fa fa-3x fa-fw fa-edit"></i>
+                                                            <i class="fa fa-3x fa-fw fa-remove"></i>-->
+                                                        </li>
+                                                    </ul>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+
+
+                            </div></div>
+                    </div>
+                </div>

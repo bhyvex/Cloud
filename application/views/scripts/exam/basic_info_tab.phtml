@@ -1,0 +1,26 @@
+<div class="jumbotron">  
+    <div class="container">
+        <div class="row">
+            <h3 class="text-danger">
+                <div class="btn-primary col-md-4">Exam Name:</div>
+                <div class="btn-success col-md-8"><?php echo $this->basic_info['exam_name']; ?></div>
+
+                <hr>  <hr>
+                <div class="btn-primary col-md-4">Exam Duration(mins):</div>
+                <div class="btn-success col-md-8"><?php echo $this->basic_info['duration']; ?></div>
+                <hr>  <hr>
+                <div class="btn-primary col-md-4">Exam Status</div>
+                <div class="btn-success col-md-8"><?php echo $this->basic_info['status']; ?></div>
+                <hr>  <hr>
+                <div class="btn-primary col-md-4">Exam Code</div>
+                <div class="btn-success col-md-8"><?php echo $this->basic_info['code']; ?></div>
+                <form action="<?php echo root_url . '/exam/download-paper' ?>" method="POST">
+                    <br/>
+                    <input type="hidden" name="exam_name" value="<?php echo $this->basic_info['exam_name']; ?>">
+                    <input type="submit" class="btn btn-warning btn-lg" value="download the exam paper">
+                </form>
+            </h3>
+        </div>
+
+    </div>
+</div>

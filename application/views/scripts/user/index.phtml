@@ -1,0 +1,54 @@
+<div class="col-md-12 ">
+    <a href="<?php echo root_url . '\exam\add-basic-info' ?>"> 
+        <button class="container btn btn-primary col-md-9">Add a new Exam</button></a>
+    <table class="table container">
+        <thead>
+            <tr><th>No<?php echo $this->test; ?></th>
+                <th>Exam Name</th>
+                <th>Status</th>
+                <th>Exam code</th>
+                <th>Details</th>
+                <th>Change the status</th>
+                <th>Share On twitter</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $i = 0;
+            foreach ($this->exams as $rows) {
+                $i++;
+                echo "<tr>";
+                echo "<td>$i</td>";
+                echo "<td>" . $rows['exam_name'] . "</td>";
+                echo "<td>" . $rows['status'] . "</td>";
+                echo "<td>" . $rows['code'] . "</td>";
+                ?>
+
+            <td>
+                <form action="<?php echo root_url . '/exam/index' ?>" method="POST">
+                    <input type="hidden" name="exam_name" value="<?php echo $rows['exam_name']; ?>">
+                    <input type="submit" value="show Details" class="btn btn-success">
+                </form></td>
+            <td>
+                <form action="" method="POST">
+                    <input type="hidden" name="exam_name" value="<?php echo $rows['exam_name']; ?>">
+                    <input type="hidden" name="status" value="<?php echo $rows['status']; ?>">
+                    <input type="submit" value="change the status" class="btn btn-primary">
+                </form>
+            </td>
+            <td>
+                <a 
+                    href="http://twitter.com/share?text=<?php echo "I have a created an exam on the website, please use the code to start the exam(code:". $rows['code'].")";?>">
+                <i class="fa fa-3x fa-fw fa-twitter text-inverse"></i>
+                </a>
+            </td>
+
+            <?php
+            echo "</tr>";
+        }
+        ?>
+
+        </tbody>
+    </table>
+</div>
